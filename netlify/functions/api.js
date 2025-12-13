@@ -19,9 +19,6 @@ app.use(express.urlencoded({ extended: true }));
  */
 app.use("/", routes);
 
-app.get("/", (req, res) => {
-  res.send("smfinance backend running");
-});
 
 app.use(errorMiddleware);
 
