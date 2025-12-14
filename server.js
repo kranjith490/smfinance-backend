@@ -1,9 +1,9 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
 
-const routes = require('./src/routes');
-const errorMiddleware = require('./src/middlewares/error.middleware');
+const routes = require("./src/routes");
+const errorMiddleware = require("./src/middlewares/error.middleware");
 
 const app = express();
 
@@ -11,12 +11,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', routes);
+app.use("/", routes);
 
-app.get('/', (req, res) => {
-  res.send('smfinance backend running');
+app.get("/", (req, res) => {
+  res.send("smfinance backend running");
 });
 
 app.use(errorMiddleware);
 
-module.exports = app;
+//module.exports = app;
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
