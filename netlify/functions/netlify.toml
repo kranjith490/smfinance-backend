@@ -1,10 +1,8 @@
 [build]
   functions = "netlify/functions"
-  publish = "public"
 
-[functions]
-  node_bundler = "esbuild"
-
-[dev]
-  port = 8888
-  functionsPort = 9999
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true
