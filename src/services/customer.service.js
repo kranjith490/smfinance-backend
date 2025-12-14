@@ -1,7 +1,7 @@
 const { parse } = require("dotenv");
 const CustomerRepo = require("../repositories/customer.repository");
 const InstallmentRepo = require("../repositories/installment.repository");
-const { v4: uuidv4 } = require("uuid");
+const { randomUUID } = require("crypto");
 
 exports.list = async (filters) => {
   const { accountNo, name, city, mobile, page, limit } = filters;
@@ -73,7 +73,7 @@ exports.create = async (data) => {
 
   const installmentAmount = (totalAmount / noOfInstallments).toFixed(2);
 
-  const customerId = uuidv4();
+  const customerId = randomUUID();
 
   // Insert into customer table
   const customer = await CustomerRepo.create({
@@ -110,7 +110,7 @@ exports.create = async (data) => {
     dueDate.setMonth(dueDate.getMonth() + (i - 1));
 
     installments.push({
-      id: uuidv4(),
+      id: randomUUID(),
       customer_id: customerId,
       installment_number: i,
       installment_amount: installmentAmount,

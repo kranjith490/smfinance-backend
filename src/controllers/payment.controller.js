@@ -2,6 +2,9 @@ const PaymentRepo = require("../repositories/payment.repository");
 const InstallmentRepo = require("../repositories/installment.repository");
 const CustomerRepo = require("../repositories/customer.repository");
 
+const { randomUUID } = require("crypto");
+
+
 exports.addPayment = async (req, res, next) => {
   try {
     const {
@@ -25,7 +28,7 @@ exports.addPayment = async (req, res, next) => {
 
     // 1. Add Payment
     const payment = await PaymentRepo.addPayment({
-      id: require("uuid").v4(),
+      id: randomUUID(),
       customer_id: customerId,
       installment_id: installmentId,
       amount_paid: amountPaid,

@@ -1,5 +1,5 @@
 const db = require("../config/db");
-const { v4: uuidv4 } = require("uuid");
+const { randomUUID } = require("crypto");
 
 exports.findByEmail = async (email) => {
   const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
@@ -7,7 +7,7 @@ exports.findByEmail = async (email) => {
 };
 
 exports.createUser = async (user) => {
-  const id = uuidv4(); // Generate a unique ID
+  const id = randomUUID(); // Generate a unique ID
   const { name, email, password, role } = user;
 
   await db.query(

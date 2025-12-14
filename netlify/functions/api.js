@@ -12,13 +12,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// IMPORTANT: mount API root here
-app.use("/api", routes);
-
-app.get("/", (req, res) => {
-  res.send("smfinance backend running");
-});
+/**
+ * IMPORTANT:
+ * DO NOT prefix with /api here
+ */
+app.use("/", routes);
 
 app.use(errorMiddleware);
 
+/**
+ * Netlify handler
+ */
 module.exports.handler = serverless(app);
