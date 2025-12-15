@@ -18,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
  */
 app.use("/", routes);
 
+app.get("/ping", (req, res) => {
+  res.json({ message: "Netlify function working" });
+});
+
 app.use(errorMiddleware);
 
 /**
