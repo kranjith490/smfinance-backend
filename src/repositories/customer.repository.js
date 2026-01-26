@@ -101,7 +101,10 @@ exports.allList = async () => {
       no_of_installments AS noOfInstallments, 
       interest_rate AS interestRate,
       installment_amount AS installmentAmount, start_date AS startDate, 
-      created_at AS createdAt
+      created_at AS createdAt,
+      make AS make,
+      model AS model,
+      guarantor_father_name AS guarantorFatherName
     FROM customers
     WHERE active = 'A'
     ORDER BY created_at DESC
